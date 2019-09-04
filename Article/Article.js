@@ -112,3 +112,28 @@ const data = [
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
 
 */
+
+const articlesParent = document.querySelector('articles');
+
+
+//object that my component function will ref
+const contentObj = {
+  title: this.title,
+  date: this.date,
+  firstP: this.firstParagraph,
+  secondP: this.secondParagraph,
+  thirdP: this.thirdParagraph,
+}
+
+
+function component(obj){
+  //setting up my elements
+  const article = document.createElement('div');
+  const titles = document.createElement('h2');
+  const dates = document.createElement('p')
+  const content1 = document.createElement('p');
+  const content2 = document.createElement('p');
+  const content3 = document.createElement('p');
+
+
+}
