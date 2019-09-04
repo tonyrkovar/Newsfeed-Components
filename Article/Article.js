@@ -85,7 +85,34 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
-  }
+  },
+  {
+    title: 'Why Bob Ross would be the worlds greatest Web Dev.',
+    date: 'July 22nd 2019',
+    firstParagraph: 'This present moment is perfect simply due to the fact youre experiencing it. Well put a happy little sky in here. Every single thing in the world has its own personality - and it is up to you to make friends with the little rascals. These trees are so much fun. I get started on them and I have a hard time stopping. The least little bit can do so much.',
+    
+    secondParagraph: 'Just pretend you are a whisper floating across a mountain. Im sort of a softy, I couldnt shoot Bambi except with a camera. Well throw some happy little limbs on this tree. Lets build an almighty mountain.',
+
+    thirdParagraph: 'Be so very light. Be a gentle whisper. Just let go - and fall like a little waterfall. I will take some magic white, and a little bit of Vandyke brown and a little touch of yellow.'
+  },
+  {
+  title: 'The rise of Pirates is driving design costs up',
+  date: 'August 1st, 1658',
+  firstParagraph: `Prow scuttle parrel provost Sail ho shrouds spirits boom mizzenmast yardarm. Pinnace holystone mizzenmast quarter crow's nest nipperkin grog yardarm hempen halter furl. Swab barque interloper chantey doubloon starboard grog black jack gangway rutters.`,
+  
+  secondParagraph: `Deadlights jack lad schooner scallywag dance the hempen jig carouser broadside cable strike colors. Bring a spring upon her cable holystone blow the man down spanker Shiver me timbers to go on account lookout wherry doubloon chase. Belay yo-ho-ho keelhaul squiffy black spot yardarm spyglass sheet transom heave to.`,
+  
+  thirdParagraph: `Trysail Sail ho Corsair red ensign hulk smartly boom jib rum gangway. Case shot Shiver me timbers gangplank crack Jennys tea cup ballast Blimey lee snow crow's nest rutters. Fluke jib scourge of the seven seas boatswain schooner gaff booty Jack Tar transom spirits.`
+  },
+  {
+    title: `Hipsters have ruined your favorite bar, now what?`,
+    date: `March 31st, 2014`,
+    firstParagraph: `Lorem ipsum dolor amet poke 8-bit cornhole celiac offal, tousled la croix knausgaard gluten-free retro cold-pressed. Meh single-origin coffee tumblr palo santo. Coloring book semiotics gastropub, hell of yuccie fanny pack keffiyeh taiyaki drinking vinegar ennui heirloom man braid. Pug cloud bread franzen kombucha selfies asymmetrical banjo shoreditch wayfarers live-edge. Readymade hella occupy tbh beard synth chambray iceland cornhole pok pok man braid stumptown 90's butcher. Yr normcore la croix gastropub iceland enamel pin, 3 wolf moon letterpress tumblr man bun selfies.`,
+
+    secondParagraph: `Deep v lomo keytar chambray vegan neutra iceland kogi letterpress wayfarers gentrify succulents man braid flannel live-edge. Shoreditch occupy organic bespoke vinyl photo booth. Truffaut direct trade subway tile ennui. Intelligentsia iPhone quinoa activated charcoal aesthetic everyday carry succulents.`,
+
+    thirdParagraph: `Cloud bread swag palo santo snackwave, raclette wayfarers cornhole. Subway tile chillwave mixtape kombucha hammock bicycle rights, poke direct trade blue bottle affogato pork belly cardigan etsy church-key. Bespoke taxidermy cardigan selfies. Distillery tote bag affogato, celiac woke hammock semiotics hoodie.`,
+  }   
 ];
 
 /* Step 1: Create a function that creates a component. You will want your component to look like the template below: 
@@ -103,12 +130,62 @@ const data = [
 
   Your function should take either an object as it's one argument, or 5 separate arguments mapping to each piece of the data object above.
 
-  Step 2: Add an event listener to the expandButton span. This event listener should toggle the class 'article-open' on the 'article' div.
+  Step 2: Add an event listener to the expandButton span. This event listener should toggle the class 
+  'article-open' on the 'article' div.
 
   Step 3: return the entire component.
 
-  Step 4: Map over the data, creating a component for each oject and add each component to the DOM as children of the 'articles' div.
+  Step 4: Map over the data, creating a component for each oject and add each component to the DOM as 
+  children of the 'articles' div.
 
-  Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
+  Step 5: Add a new article to the array. Make sure it is in the same format as the others. 
+  Refresh the page to see the new article.
 
 */
+
+const articlesParent = document.querySelector('.articles');
+
+
+data.forEach( (e) => {
+   articlesParent.appendChild(component(e))
+})
+
+function component(obj){
+  //setting up my elements
+  const article = document.createElement('div');
+  const titles = document.createElement('h2');
+  const dates = document.createElement('p')
+  const content1 = document.createElement('p');
+  const content2 = document.createElement('p');
+  const content3 = document.createElement('p');
+  const expand = document.createElement('span');
+
+  // appending elements to appropriate areas
+  article.appendChild(titles);
+  article.appendChild(dates);
+  article.appendChild(content1);
+  article.appendChild(content2);
+  article.appendChild(content3);
+  article.appendChild(expand);
+
+  //defining my classes
+  article.classList.add('article');
+  dates.classList.add('date');
+  expand.classList.add('expandButton');
+
+  //set content
+  titles.textContent = obj.title;
+  dates.textContent = obj.date;
+  content1.textContent = obj.firstParagraph;
+  content2.textContent = obj.secondParagraph;
+  content3.textContent = obj.thirdParagraph;
+
+
+  //event listener
+  article.addEventListener('click', e => {
+    article.classList.toggle('article-open');
+  })
+
+  return article;
+}
+
