@@ -180,6 +180,8 @@ function component(obj){
   content2.textContent = obj.secondParagraph;
   content3.textContent = obj.thirdParagraph;
 
+
+  //event listener
   article.addEventListener('click', e => {
     article.classList.toggle('article-open');
   })
@@ -187,4 +189,3 @@ function component(obj){
   return article;
 }
 
-data.map
