@@ -103,28 +103,25 @@ const data = [
 
   Your function should take either an object as it's one argument, or 5 separate arguments mapping to each piece of the data object above.
 
-  Step 2: Add an event listener to the expandButton span. This event listener should toggle the class 'article-open' on the 'article' div.
+  Step 2: Add an event listener to the expandButton span. This event listener should toggle the class 
+  'article-open' on the 'article' div.
 
   Step 3: return the entire component.
 
-  Step 4: Map over the data, creating a component for each oject and add each component to the DOM as children of the 'articles' div.
+  Step 4: Map over the data, creating a component for each oject and add each component to the DOM as 
+  children of the 'articles' div.
 
-  Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
+  Step 5: Add a new article to the array. Make sure it is in the same format as the others. 
+  Refresh the page to see the new article.
 
 */
 
-const articlesParent = document.querySelector('articles');
+const articlesParent = document.querySelector('.articles');
 
 
-//object that my component function will ref
-const contentObj = {
-  title: this.title,
-  date: this.date,
-  firstP: this.firstParagraph,
-  secondP: this.secondParagraph,
-  thirdP: this.thirdParagraph,
-}
-
+data.forEach( (e) => {
+   articlesParent.appendChild(component(e))
+})
 
 function component(obj){
   //setting up my elements
@@ -134,6 +131,33 @@ function component(obj){
   const content1 = document.createElement('p');
   const content2 = document.createElement('p');
   const content3 = document.createElement('p');
+  const expand = document.createElement('span');
 
+  // appending elements to appropriate areas
+  article.appendChild(titles);
+  article.appendChild(dates);
+  article.appendChild(content1);
+  article.appendChild(content2);
+  article.appendChild(content3);
+  article.appendChild(expand);
 
+  //defining my classes
+  article.classList.add('article');
+  dates.classList.add('date');
+  expand.classList.add('expandButton');
+
+  //set content
+  titles.textContent = obj.title;
+  dates.textContent = obj.date;
+  content1.textContent = obj.firstParagraph;
+  content2.textContent = obj.secondParagraph;
+  content3.textContent = obj.thirdParagraph;
+
+  article.addEventListener('click', e => {
+    article.classList.toggle('article-open');
+  })
+
+  return article;
 }
+
+data.map
